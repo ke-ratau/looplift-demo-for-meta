@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static("."));
 
 // 🔐 Replace these with your real values
-const TOKEN = "EAAaxULheC4UBRHE08K9zFVI6qusFEsR5ULzQUjkAXXdYf8iRStKei3WKJnMH5qekx4ZBJV3K3eef5fWZCnBSwX7SbeoO5bZCaO5e30JmN1mnMSwy4z1ZCxGsXe5qbUWBZAmmD0Nzuv1SuQZCw4HIsBCqvGXM8y60bIxbbQSyoMCHgXvtQeWLM9fZA1jiFutPJG8Am5vqqfMC1xyDZA7OA7JmZCXiiM8XbZAo8omX2UfLQadZCgS8NlV92bSsNLxaLV2z6xMiEgiRTXX1jsfIkCAutjfoN9p2LlBU3TwRbIZBxQZDZD";
+const TOKEN = "de580f339f1f9d6d16515869796da52b";
 const PHONE_ID = "994036453787440";
 
 // ✅ Health check (optional)

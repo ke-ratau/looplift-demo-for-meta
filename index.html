@@ -132,7 +132,7 @@
             "Facebook login failed.";
           document.getElementById("status").style.color = "red";
         }
-      }, { scope: 'public_profile' });
+      }, { scope: 'public_profile,email' });
     }
 
     async function sendMessage() {

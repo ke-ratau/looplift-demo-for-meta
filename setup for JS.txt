@@ -1,0 +1,9 @@
+{
+  "title": "Test Tender",
+  "organization": "Test Org",
+  "province": "Gauteng",
+  "description":"Supply and Delivery of brackets",
+  "tender_url":"www.looplift.co.za",
+  "document_url":"www.looplift.co.za",
+  "closing_date": "2026-05-01"
+}

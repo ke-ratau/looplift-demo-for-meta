@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LoopLift Demo</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 340px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .fb-btn {
+      background: #1877f2;
+      color: white;
+    }
+
+    .wa-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    .status {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
+
+  <!-- Facebook SDK -->
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '1883810108935045',
+        cookie: true,
+        xfbml: true,
+        version: 'v22.0'
+      });
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>LoopLift</h2>
+    <p>Login and receive a WhatsApp welcome message</p>
+
+    <button class="fb-btn" onclick="loginWithFacebook()">
+      Login with Facebook
+    </button>
+
+    <input 
+      type="text" 
+      id="phone" 
+      placeholder="Enter phone (e.g. 276XXXXXXXX)"
+    />
+
+    <button class="wa-btn" onclick="sendMessage()">
+      Send Welcome Message
+    </button>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    let isLoggedIn = false;
+
+    function loginWithFacebook() {
+      FB.login(function(response) {
+        if (response.authResponse) {
+          console.log("Login success:", response);
+          isLoggedIn = true;
+
+          document.getElementById("status").innerText =
+            "Facebook login successful. You can now send a message.";
+          document.getElementById("status").style.color = "green";
+
+        } else {
+          document.getElementById("status").innerText =
+            "Facebook login failed.";
+          document.getElementById("status").style.color = "red";
+        }
+      }, { scope: 'public_profile,email' });
+    }
+
+    async function sendMessage() {
+      const phone = document.getElementById("phone").value;
+      const status = document.getElementById("status");
+
+      if (!isLoggedIn) {
+        status.innerText = "Please login with Facebook first.";
+        status.style.color = "red";
+        return;
+      }
+
+      if (!phone) {
+        status.innerText = "Please enter a phone number.";
+        status.style.color = "red";
+        return;
+      }
+
+      status.innerText = "Sending message...";
+      status.style.color = "black";
+
+      try {
+        const res = await fetch("http://localhost:3000/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ to: phone })
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        if (data.error) {
+          status.innerText = "Error sending message.";
+          status.style.color = "red";
+        } else {
+          status.innerText = "Message sent! Check your WhatsApp.";
+          status.style.color = "green";
+        }
+
+      } catch (err) {
+        console.error(err);
+        status.innerText = "Server error. Make sure backend is running.";
+        status.style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>

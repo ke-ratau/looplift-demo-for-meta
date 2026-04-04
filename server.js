@@ -39,7 +39,7 @@ app.post("/send", async (req, res) => {
         },
         body: JSON.stringify({
           messaging_product: "whatsapp",
-          to: to,
+          to,
           type: "text",
           text: {
             body: "Hi, welcome to LoopLift. We'll send you contractor opportunities here."

@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static("."));
 
 // 🔐 Replace these with your real values
-const TOKEN = "EAAaxULheC4UBRN5R4teMZCN8rov09ZBOYUG6P3SCcYcWkWhAMrm22hWTs0q1jPNil9B0DBydCQZCKyDOaKwH3iM7BImjUooFnvBotu37TkBRKCW0mf21JlfS8moZC5De8HnSZCWDP4oZAtLqhuWYZAZCFlpaq5B3ncaTWkVxwjVpJjglAumStatkPMO2xH2yfV7NCZAZBOKwyRfJ0IWE42a7LwJD0VTXG9LvSrpGZCzr2xY5iB5beHT8c7yvZBAoCLDyprU1zfr6OecmLLBA2k2WnWY2swC8dfrFRGMmwrYmEgZDZD";
+const TOKEN = "EAFyeW3PMqBABRHhewwqlhqxqXanGWv3D6hy9PUoIoj94svkq1yBmHQjI7MmZCdtCZCZBzkuoHVZAZAIvb89q1xsaVAspeGncZC4YOQjSgABmeqjq6N7enlZC0RxVD0OTZBC95P9gQE3SO4MUYK3Jj6h4g8FaHBtqWnRpGAhdZBa4SujDJN744Iypue1tTfsyZAvfIjXns1rxqqSVyRc1sOOf8LLflS9KjoEuv94wtCNjmQFI30HAh1ZBrpv9EkDyrW1xlPF6He133KNlXDEgelKIL3b6v6bcZBnFZAlTSDqRQxQZDZD";
 const PHONE_ID = "980708968468658";
 
 // ✅ Health check (optional)
